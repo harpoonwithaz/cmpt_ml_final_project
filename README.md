@@ -2,19 +2,9 @@
 
 ## Installation
 
-Optional but recommended for full compatibility
+Recommended for full compatibility
 
-1. Enable script execution to run virtual environment. Run powershell as admin and use the following command:
-
-```Powershell
-Set-ExecutionPolicy RemoteSigned
-```
-
-2. Install sklearn and run venv
-
-```shell
-python -m venv sklearn-env
-sklearn-env\Scripts\activate  # activate
+```bash
 pip install -U scikit-learn
 ```
 
