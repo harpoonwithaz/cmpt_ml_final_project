@@ -1,10 +1,8 @@
 # =====================================
-# Author(s): Oliver Tadaniewicz, Enzo 
+# Author(s): Oliver Tadaniewicz, 
 # Date: 11/18/2025
-# Description: 
+# Description: Module to process the data from csv file into a format usable for the ML model
 # =====================================
-
-
 
 import os
 from typing import List, Tuple
@@ -33,7 +31,7 @@ def create_data_set() -> Tuple[List[float], List[List[float]]]:
     
     Returns: A tuple containing:
         - output_data: List containing rented bike count in hour.
-        - input_data: List of lists containing float of metrics from bike rental in hour:
+        - input_data: 2d array containing float of metrics from bike rental in hour:
             - index 0: Hour
             - index 1: Temperature (degrees celsius)
             - index 2: Humidity (%)
@@ -53,6 +51,7 @@ def create_data_set() -> Tuple[List[float], List[List[float]]]:
                 - Holiday = 1.0
     '''
 
+    # Ensures python can find the correct file location
     cwd = os.getcwd()
     file_location = f'{cwd}\\part2\\dataset\\SeoulBikeData.csv'
 
@@ -98,10 +97,15 @@ def create_data_set() -> Tuple[List[float], List[List[float]]]:
 
     return output_data, input_data
 
-def partition_data(data: list) -> Tuple[List, List]:
+def train_test_partition(data: list) -> Tuple[List, List]:
     '''Function to partition data into training data and test data
+
+    Args:
+        data (list): The data that will be partitioned
     
-    Returns:
+    Returns: A tuple containing:
+        - training partition: List containing the first 80% of the data passed in
+        - test partition: List containing the remaining 20% of the data
     '''
     partition_index = int(len(data) * 0.8) # 80% of the data given will be training data, remaining 20% is test data
 
@@ -117,6 +121,6 @@ if __name__ == '__main__':
     print(len(out))
     print(len(i))
 
-    train, test = partition_data(out)
+    train, test = train_test_partition(out)
     print(len(train))
     print(len(test))

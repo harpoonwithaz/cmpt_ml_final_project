@@ -1,4 +1,6 @@
-# Project
+# CMPT 120 Machine Learning Final Project
+
+Our task is to create 4 different machine learning models using the Scikit-Learn package.
 
 ## Installation
 
