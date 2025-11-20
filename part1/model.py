@@ -46,9 +46,6 @@ def create_outputs(inputs, weight_a, weight_b, weight_c) -> List[int]:
         output_list.append(total)
 
             
-
-
-
     #print(f"Original list: {inputs} \n\n\n")
 
     return output_list
