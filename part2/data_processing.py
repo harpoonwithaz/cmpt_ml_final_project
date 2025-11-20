@@ -26,11 +26,10 @@ from typing import List, Tuple
 # 12: Holiday (No Holiday/Holiday)
 # 13: Functioning day (Yes/No)
 
-def create_data_set() -> Tuple[List[float], List[List[float]]]:
+def create_data_set() -> Tuple[List[List[int]], List[int]]:
     '''Function to read CSV file data and returns list of input data and list of output data.
     
     Returns: A tuple containing:
-        - output_data: List containing rented bike count in hour.
         - input_data: 2d array containing float of metrics from bike rental in hour:
             - index 0: Hour
             - index 1: Temperature (degrees celsius)
@@ -49,11 +48,12 @@ def create_data_set() -> Tuple[List[float], List[List[float]]]:
             - index 10: Holiday (Represented by float):
                 - No Holiday = 0.0
                 - Holiday = 1.0
+        - output_data: List containing rented bike count in hour.
     '''
 
     # Ensures python can find the correct file location
     cwd = os.getcwd()
-    file_location = f'{cwd}\\part2\\dataset\\SeoulBikeData.csv'
+    file_location = f'{cwd}\\part2\\data\\SeoulBikeData.csv'
 
     # Number corresponding to season
     season_map = {
@@ -95,7 +95,7 @@ def create_data_set() -> Tuple[List[float], List[List[float]]]:
                     if i not in (0, 1, 13) # Skips the elements we don't need (Date, Rented bike count, Functioning day)
                     ])
 
-    return output_data, input_data
+    return input_data, output_data
 
 def train_test_partition(data: list) -> Tuple[List, List]:
     '''Function to partition data into training data and test data

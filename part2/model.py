@@ -7,32 +7,31 @@
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
-import matplotlib.pyplot as plt
-
 # Local module imports
 from data_processing import create_data_set
+from model_performance import calculate_model_performance, graph_error_percentage
 
 # Obtain appropriate data that will be fed to model
-output_data, input_data = create_data_set()
-training_input, test_input, training_output, test_output = train_test_split(input_data, output_data)
-
+print('Creating data set...')
+X, y = create_data_set()
+print('Partitioning Data...')
+X_train, X_test, y_train, y_test = train_test_split(X, y)
+print(f'Training length x: {len(X_train)}')
+print(f'Test length x: {len(X_test)}')
 
 # Training the model
-model = LinearRegression(n_jobs=-1)
-model.fit(X=training_input, y=training_output)
+print('Training model...')
+model = LinearRegression()
+model.fit(X=X_train, y=y_train)
 
 # Prediction
-prediction = model.predict(X=test_input)
-coefficients = 
+print('Creating prediction...')
+prediction = model.predict(X=X_test)
 
-#print(input_data[0])
+# Model performance
+print('Calculating model performance')
+error_percentages = calculate_model_performance(y_test, prediction)
+print('Graphing error percentage...')
+graph_error_percentage(error_percentages, 'Predictions Error Percentages')
 
-if __name__ == '__main__':
-    print(len(training_input))
-    print(len(test_input))
-    print(len(training_output))
-    print(len(test_output))
 
-    '''plt.scatter(input_data, output_data, c='r')
-    plt.plot(input_data, output_data, c='b')
-    plt.show()'''
