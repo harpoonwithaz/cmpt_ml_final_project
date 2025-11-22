@@ -63,6 +63,9 @@ def create_data_set() -> Tuple[List[List[int]], List[int]]:
         'Autumn': 3.0
     }
 
+    # Indexes of row in csv file to not include in input data
+    elements_to_skip = (0, 1, 13)
+
     output_data = []
     input_data = []
 
@@ -92,7 +95,7 @@ def create_data_set() -> Tuple[List[List[int]], List[int]]:
                         float(x) # Adds the element from line_list
                     )
                     for i, x in enumerate(line_list)
-                    if i not in (0, 1, 11, 12, 13) # Skips the elements we don't need (Date, Rented bike count, Functioning day)
+                    if i not in elements_to_skip # Skips the elements we don't need (Date, Rented bike count, Functioning day)
                     ])
 
     return input_data, output_data
