@@ -53,123 +53,130 @@ def graph_error_percentage(percentages: dict, graph_title: str):
     '''Function to model the error percentages as a bar graph
     
     Args:
-        percentages (dict): Containing error percentages for each prediction
+        percentages (dict): Containing error percentages for each prediction.
+        graph_title (str): Title of window, and at the top of the graph
     '''
-    # I acknowledge that I used chatgpt to assist me in creating this function.
-    # It helped me with method of creating the graph, and how to display the bars on the graph
+    try:
+        # I acknowledge that I used chatgpt to assist me in creating this function.
+        # It helped me with method of creating the graph, and how to display the bars on the graph
 
-    keys = percentages.keys()
+        keys = percentages.keys()
 
-    # Turtle setup
-    screen_width = 720
-    screen_height = 540
-    font = ('Arial', 10, 'normal')
-    axis_font = ('Arial', 10, 'bold')
-    title_font = ('Arial', 16, 'bold')
+        # Turtle setup
+        screen_width = 720
+        screen_height = 540
+        font = ('Arial', 10, 'normal')
+        axis_font = ('Arial', 10, 'bold')
+        title_font = ('Arial', 16, 'bold')
 
-    turtle.setup(screen_width, screen_height)
-    turtle.clear()
-    turtle.speed(0)
-    turtle.hideturtle()
-    turtle.title(graph_title)
+        turtle.setup(720, 540)
+        turtle.clear()
+        turtle.speed(0)
+        turtle.hideturtle()
+        turtle.title(graph_title)
 
-    # Graph size
-    margin = 100
-    graph_left = -screen_width // 2 + margin
-    graph_bottom = -screen_height // 2 + margin
-    graph_width = screen_width - 2 * margin
-    graph_height = screen_height - 2* margin
+        # Graph size
+        margin = 100
+        graph_left = -screen_width // 2 + margin
+        graph_bottom = -screen_height // 2 + margin
+        graph_width = screen_width - 2 * margin
+        graph_height = screen_height - 2 * margin
 
-    # Bar values
-    bar_spacing = 10
-    bars_amount = len(keys)
-    bar_width = (graph_width - (bars_amount - 1) * bar_spacing) / bars_amount
+        # Bar values
+        bar_spacing = 10
+        bars_amount = len(keys)
+        bar_width = (graph_width - (bars_amount - 1) * bar_spacing) / bars_amount
 
-    # X axis
-    turtle.penup()
-    turtle.goto(graph_left, graph_bottom)
-    turtle.pendown()
-    turtle.pencolor('black')
-    turtle.forward(graph_width)
-
-    # Y axis
-    turtle.penup()
-    turtle.goto(graph_left, graph_bottom)
-    turtle.setheading(90) # Points turtle up
-    turtle.pendown()
-    turtle.forward(graph_height)
-
-    # Chatgpt helped create this piece next code
-    # Y axis labels
-    increments = 5
-    values = list(percentages.values())
-    max_value = max(values) if values else 1 # How high the tallest bar will be
-    for i in range(increments + 1):
-        y_val = i * max_value / increments
-        y_pos = graph_bottom + (y_val / max_value) * graph_height
-
-        # Graph increment
+        # X axis
         turtle.penup()
-        turtle.goto(graph_left - 5, y_pos)
+        turtle.goto(graph_left, graph_bottom)
         turtle.pendown()
-        turtle.goto(graph_left, y_pos)
-
-        # Increment label
-        turtle.penup()
-        turtle.goto(graph_left - 10, y_pos - 5)
-        turtle.write(f'{int(y_val)}', align='right', font=font)
-
-    # Bars
-    for i, key in enumerate(keys):
-        value = percentages[key]
-        bar_height = (value / max_value) * graph_height
-
-        x_start = graph_left + (i * (bar_width + bar_spacing))
-        y_start = graph_bottom
-
-        # Draw bar
-        turtle.penup()
-        turtle.goto(x_start, y_start)
         turtle.pencolor('black')
-        turtle.fillcolor('steelblue')
-        turtle.begin_fill()
-        turtle.setheading(90)
-        turtle.pendown()
-        turtle.forward(bar_height)
-        turtle.setheading(0)
-        turtle.forward(bar_width)
-        turtle.setheading(270)
-        turtle.forward(bar_height)
-        turtle.setheading(180)
-        turtle.forward(bar_width)
-        turtle.end_fill()
+        turtle.forward(graph_width)
 
-        # Bar value text
+        # Y axis
         turtle.penup()
-        turtle.goto(x_start + (bar_width / 2), y_start + bar_height + 5)
+        turtle.goto(graph_left, graph_bottom)
+        turtle.setheading(90) # Points turtle up
+        turtle.pendown()
+        turtle.forward(graph_height)
 
-        # X label
-        turtle.goto(x_start + (bar_width / 2), graph_bottom - 20)
-        turtle.write(key, align='center', font=font)
+        # Chatgpt helped create this piece next code
+        # Y axis labels
+        increments = 5
+        values = list(percentages.values())
+        max_value = max(values) if values else 1 # How high the tallest bar will be
+        for i in range(increments + 1):
+            y_val = i * max_value / increments
+            y_pos = graph_bottom + (y_val / max_value) * graph_height
 
-    # Horizontal axis title
-    turtle.penup()
-    turtle.goto(0, graph_bottom - (margin / 2) - 10)
-    turtle.write('ERROR RANGE (%)', align='center', font=axis_font)
+            # Graph increment
+            turtle.penup()
+            turtle.goto(graph_left - 5, y_pos)
+            turtle.pendown()
+            turtle.goto(graph_left, y_pos)
 
-    # Vertical axis title
-    turtle.penup()
-    y = 0
-    vertical_text = 'AMOUNT OF PREDICTIONS'
-    spacing = font[1] + 2
-    for char in vertical_text:
-        turtle.goto(graph_left - (margin / 2) - 10, y + (len(vertical_text) * spacing) / 2)
-        turtle.write(char, align='center', font=axis_font)
-        y -= spacing  # move down for next character
+            # Increment label
+            turtle.penup()
+            turtle.goto(graph_left - 10, y_pos - 5)
+            turtle.write(f'{int(y_val)}', align='right', font=font)
 
-    # Graph title
-    turtle.penup()
-    turtle.goto(0, graph_bottom + graph_height + 30)
-    turtle.write(graph_title, align='center', font=title_font)
+        # Bars
+        for i, key in enumerate(keys):
+            value = percentages[key]
+            bar_height = (value / max_value) * graph_height
 
-    turtle.done()
+            x_start = graph_left + (i * (bar_width + bar_spacing))
+            y_start = graph_bottom
+
+            # Draw bar
+            turtle.penup()
+            turtle.goto(x_start, y_start)
+            turtle.pencolor('black')
+            turtle.fillcolor('gray')
+            turtle.begin_fill()
+            turtle.setheading(90)
+            turtle.pendown()
+            turtle.forward(bar_height)
+            turtle.setheading(0)
+            turtle.forward(bar_width)
+            turtle.setheading(270)
+            turtle.forward(bar_height)
+            turtle.setheading(180)
+            turtle.forward(bar_width)
+            turtle.end_fill()
+
+            # Bar value text
+            turtle.penup()
+            turtle.goto(x_start + (bar_width / 2), y_start + bar_height + 5)
+
+            # X label
+            turtle.goto(x_start + (bar_width / 2), graph_bottom - 20)
+            turtle.write(key, align='center', font=font)
+
+        # Horizontal axis title
+        turtle.penup()
+        turtle.goto(0, graph_bottom - (margin / 2) - 10)
+        turtle.write('ERROR RANGE (%)', align='center', font=axis_font)
+
+        # Vertical axis title
+        turtle.penup()
+        y = 0
+        vertical_text = 'AMOUNT OF PREDICTIONS'
+        spacing = font[1] + 2
+        for char in vertical_text:
+            turtle.goto(graph_left - (margin / 2) - 10, y + (len(vertical_text) * spacing) / 2)
+            turtle.write(char, align='center', font=axis_font)
+            y -= spacing  # move down for next character
+
+        # Graph title
+        turtle.penup()
+        turtle.goto(0, graph_bottom + graph_height + 30)
+        turtle.write(graph_title, align='center', font=title_font)
+        turtle.penup()
+
+        #turtle.done()
+    except turtle.Terminator:
+        print('Error: Could not graph the results due to the window being closed.')
+        print(f'Percentages: {percentages}')
+        print('If you would like to display the results again, quit the program and run again.')
