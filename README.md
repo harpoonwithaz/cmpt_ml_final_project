@@ -46,6 +46,58 @@ File used: `SeoulBikeData.csv`
 File that 
 
 ## Part 3
+We predicted the curricular units 2nd sem (grade) (index 31)
+
+In the data processing file we excluded indexes: 
+29 (2nd sem evaluations)
+    - because you would only know how many exams they took after the semester is over
+30 (2nd sem approved)
+    - because it tells the model the success/failure result, giving away the grade
+31 (2nd sem grade)
+    - because this is the answer key
+32 (2nd sem without evaluations)
+    - because this reveals the number of classes skipped or failed after the semester ends
+36 (Target - Future status)
+    - because this leaks the future, whether they eventually graduate or dropout, after the 2nd semester grades are recorded
+    
+Reference: Original Dataset Columns:
+0. Marital status
+1. Application mode
+2. Application order
+3. Course
+4. Daytime/evening attendance
+5. Previous qualification
+6. Previous qualification (grade)
+7. Nacionality
+8. Mother's qualification
+9. Father's qualification
+10. Mother's occupation
+11. Father's occupation
+12. Admission grade
+13. Displaced
+14. Educational special needs
+15. Debtor
+16. Tuition fees up to date
+17. Gender
+18. Scholarship holder
+19. Age at enrollment
+20. International
+21. Curricular units 1st sem (credited)
+22. Curricular units 1st sem (enrolled)
+23. Curricular units 1st sem (evaluations)
+24. Curricular units 1st sem (approved)
+25. Curricular units 1st sem (grade)
+26. Curricular units 1st sem (without evaluations)
+27. Curricular units 2nd sem (credited)
+28. Curricular units 2nd sem (enrolled)
+29. Curricular units 2nd sem (evaluations)
+30. Curricular units 2nd sem (approved)
+31. Curricular units 2nd sem (grade)
+32. Curricular units 2nd sem (without evaluations)
+33. Unemployment rate
+34. Inflation rate
+35. GDP
+36. Target (shows if graduated, enrolled, or dropout)
 
 ## Part 4
 
