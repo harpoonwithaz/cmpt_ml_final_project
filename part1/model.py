@@ -45,12 +45,7 @@ def create_outputs(inputs, weight_a, weight_b, weight_c) -> List[int]:
         total = value_1 + value_2 + value_3
         output_list.append(total)
 
-            
-    #print(f"Original list: {inputs} \n\n\n")
-
     return output_list
-
-#print(create_outputs(create_inputs(),1,2,3))
 
 # Create training set for prediction
 train_input = create_inputs()
@@ -59,7 +54,6 @@ train_output = create_outputs(train_input,1,2,3)
 # Prediction
 predictor = LinearRegression(n_jobs=-1)
 predictor.fit(X=train_input, y=train_output)
-
 
 # Prediction Test
 X_test = [[10,20,30]]

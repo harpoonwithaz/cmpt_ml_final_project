@@ -11,12 +11,12 @@ def create_data_set() -> Tuple[List[List[int]], List[int]]:
 
     # Ensures python can find the correct file location
     cwd = os.getcwd()
-    file_location = f'{cwd}\\part3\\data\\data.csv'
+    file_location = f'{cwd}\\part3\\data\\studentPerformance.csv'
 
     with open(file_location, "r" , encoding="utf-8") as file:
 
         # Csv file indexes to not include in input data, 31 is the answer and 30 is the approved list, which would make the prediction too easy 
-        elements_to_skip = (30,31,)
+        elements_to_skip = (30,31)
 
         output_data = []
         input_data = []
@@ -52,6 +52,7 @@ def create_data_set() -> Tuple[List[List[int]], List[int]]:
             input_data.append(row_inputs)
 
     return input_data, output_data
+
 def train_test_partition(data: list) -> Tuple[List, List]:
     '''Function to partition data into training data and test data
 

@@ -1,12 +1,12 @@
 # CMPT 120 Machine Learning Final Project
 
 Our task is to create 4 different machine learning models using the Scikit-Learn package in python.
-This project was made using visual studio code. To test this project in the way it was intended, run each file using VSCODE's builtin terminal.
+This project was built using visual studio code. To test this project in the way it was intended, run each file using VSCODE's builtin terminal.
 
 **Python Version:**
-3.13.3
-**Scikit Learn version:**
-1.7.2
+`3.13.3`
+**Scikit Learn Version:**
+`1.7.2`
 
 ## Installation
 
