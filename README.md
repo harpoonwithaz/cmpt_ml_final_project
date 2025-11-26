@@ -36,16 +36,26 @@ Using the scikit learn linear regression model, we use the *fit* function to tra
 **Prediction:**
 We use the *predict* function from scikit learn to predict the outcome based on a test array of 3 random integers. We print out the coefficients from the prediction to see if it matches the weights we used to create the outputs.
 
-## Part 2
+## Part 2: Building a Model Using Real Data
 
-Predicts the amount of bikes rented in an hour.
-File used: `SeoulBikeData.csv`
+Linear regression model to predict the count of bikes rented in an hour based on metric using real bike sharing data for the city Seoul from 2017-2018.
+File used: `SeoulBikeData.csv` from [UC Irvine](https://archive.ics.uci.edu/ml/datasets/Seoul+Bike+Sharing+Demand)
 
 ### data_processing.py
 
 File that 
 
 ## Part 3
+
+### studentPerformance.csv
+
+### data_processing.py
+
+Helper module to collect the data from the csv file and process it to a format we can use in our linear regression model.
+
+### model_performance.py
+
+### model.py
 
 ## Part 4
 

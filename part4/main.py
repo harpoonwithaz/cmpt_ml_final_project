@@ -74,7 +74,7 @@ def print_table(array: list, column_title: str, margin: int = 10):
 
 def main():
     # Obtains all files in specified directory and filters out non csv files
-    clear_console()
+    #clear_console()
     print(f'Scanning for files in: {folder_path}')
     files = os.listdir(folder_path)
     csv_files = [
@@ -141,7 +141,7 @@ def main():
         input_names = []
         while attempts >= 0:
             inputs_choice = validate_user_input('Enter number (Type "done" to stop): ', 0, len(file_columns)-1, breakout_condition='done')
-            if inputs_choice == -1:
+            if inputs_choice == -1 and len(input_indexes) == 0:
                 attempts = 0
                 break
             elif inputs_choice == output_index or inputs_choice in input_indexes:

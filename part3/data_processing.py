@@ -28,8 +28,6 @@ def create_data_set() -> Tuple[List[List[int]], List[int]]:
             "Dropout" : 3.0
         }
 
-        #for line in file.readlines():
-        #  print line
         header = file.readline()
 
         lines = file.readlines()
