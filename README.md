@@ -46,9 +46,10 @@ File used: `SeoulBikeData.csv` from [UC Irvine](https://archive.ics.uci.edu/ml/d
 File that 
 
 ## Part 3
+
 We predicted the curricular units 2nd sem (grade) (index 31)
 
-In the data processing file we excluded indexes: 
+In the data processing file we excluded indexes:
 29 (2nd sem evaluations)
     - because you would only know how many exams they took after the semester is over
 30 (2nd sem approved)
@@ -59,7 +60,7 @@ In the data processing file we excluded indexes:
     - because this reveals the number of classes skipped or failed after the semester ends
 36 (Target - Future status)
     - because this leaks the future, whether they eventually graduate or dropout, after the 2nd semester grades are recorded
-    
+  
 Reference: Original Dataset Columns:
 0. Marital status
 1. Application mode
@@ -68,7 +69,7 @@ Reference: Original Dataset Columns:
 4. Daytime/evening attendance
 5. Previous qualification
 6. Previous qualification (grade)
-7. Nacionality
+7. Nationality
 8. Mother's qualification
 9. Father's qualification
 10. Mother's occupation
