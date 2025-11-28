@@ -1,7 +1,8 @@
+# =====================================
 # Author: Laurenzo Maddatu
-# Date: November 24, 2025
-# Description: 
-
+# Date: 11/24/2025
+# Description: Creating the percentage error graph using module imports and data 
+# =====================================
 
 from sklearn.linear_model import LinearRegression
 
