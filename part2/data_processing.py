@@ -53,7 +53,7 @@ def create_data_set() -> Tuple[List[List[int]], List[int]]:
 
     # Ensures python can find the correct file location
     cwd = os.getcwd()
-    file_location = f'{cwd}\\part2\\data\\SeoulBikeData.csv'
+    file_location = os.path.join(cwd, 'part2', 'data', 'SeoulBikeData.csv')
 
     # Number corresponding to season
     season_map = {

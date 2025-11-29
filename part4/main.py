@@ -4,11 +4,13 @@
 # Description: 
 # =====================================
 
+# Displays message to show progress in case loading modules take a while
+print("Importing modules...")
+
 # Library imports
 import os
 from sklearn.linear_model import LinearRegression
 import csv
-import turtle
 
 # Local module imports
 from model_performance import calculate_model_performance, graph_error_percentage
@@ -141,7 +143,7 @@ def main():
         input_names = []
         while attempts >= 0:
             inputs_choice = validate_user_input('Enter number (Type "done" to stop): ', 0, len(file_columns)-1, breakout_condition='done')
-            if inputs_choice == -1 and len(input_indexes) == 0:
+            if inputs_choice == -1 and len(input_indexes) > 0: # When user typed done and at least 1 entry
                 attempts = 0
                 break
             elif inputs_choice == output_index or inputs_choice in input_indexes:

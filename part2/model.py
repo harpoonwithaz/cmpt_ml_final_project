@@ -1,5 +1,5 @@
 # =====================================
-# Author: Oliver Tadaniewicz
+# Author: Laurenzo Maddatu, Oliver Tadaniewicz
 # Date: 11/18/2025
 # Description: 
 # =====================================

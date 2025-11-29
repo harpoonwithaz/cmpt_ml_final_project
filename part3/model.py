@@ -1,5 +1,5 @@
 # =====================================
-# Author: Laurenzo Maddatu
+# Author: Laurenzo Maddatu, Oliver Tadaniewicz
 # Date: 11/24/2025
 # Description: Creating the percentage error graph using module imports and data 
 # =====================================

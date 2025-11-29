@@ -1,13 +1,11 @@
 # =====================================
-# Author: Laurenzo Maddatu
+# Author: Laurenzo Maddatu, Oliver Tadaniewicz
 # Date: 11/24/2025
 # Description: Module for processing the data from the csv file into a training set.
 # =====================================
 
 import os
 from typing import List, Tuple
-
-# Predicting a students second semester grades
 
 def create_data_set() -> Tuple[List[List[float]], List[float]]:
 
