@@ -1,5 +1,3 @@
-**4 DIFFERENT ZIP FILES FOR EACH PART**
-
 # CMPT 120 Machine Learning Final Project
 
 Our task is to create 4 different machine learning models using the Scikit-Learn package in python.
@@ -133,9 +131,60 @@ Reference: Original Dataset Columns:
 35. GDP
 36. Target (shows if graduated, enrolled, or dropout)
 
-## Part 4
+## Part 4: Interactive Model Building
 
-### data_processing.py
+This part creates an interactive linear regression model that allows users to provide their own CSV file and dynamically select which columns to use for training and prediction. The program guides users through file selection, column selection, and displays model performance visually.
+
+**Features:**
+
+- Automatically detects CSV files in the `data/` directory
+- Allows user to select which column to predict (output)
+- Allows user to select multiple input columns for the model
+- Automatically detects the CSV separator (comma, semicolon, etc.)
+- Validates that selected columns contain numeric data
+- Partitions data into 80% training and 20% testing sets
+- Trains a linear regression model using scikit-learn
+- Calculates and visualizes prediction error percentages
+- Allows the user to run multiple models without restarting
 
 **create_training_set()**:
-This function handles the creation of the training set from the data in the csv file
+Creates a training set from CSV data by reading the specified file and extracting columns at the given indexes.
+
+Args:
+
+- `file_location` (str): Path to the CSV file
+- `output_index` (int): Index of the column to predict
+- `input_indexes` (list[int]): Indexes of columns to use as features
+- `sep` (str): CSV separator character (auto-detected, default: ",")
+
+Returns:
+
+- Tuple containing input data (2D list) and output data (list)
+
+**train_test_partition()**:
+Splits data into 80% training and 20% testing sets.
+
+Args:
+
+- `data` (list): The data to partition
+
+Returns:
+
+- Tuple containing training data and testing data
+
+**validate_user_input()**:
+Validates numeric input from the user within specified constraints.
+
+Args:
+
+- `prompt` (str): Message to display to user
+- `min` (int): Minimum allowed value
+- `max` (int): Maximum allowed value
+- `breakout_condition` (str): Optional string to allow user to exit (default: "")
+
+Returns:
+
+- Integer value entered by user, or -1 if breakout condition is met
+
+**Model Performance:**
+Performance is calculated using the same error percentage method as Part 2 and 3, comparing actual values to predicted values. Results are visualized using a bar graph showing the distribution of prediction error percentages.
