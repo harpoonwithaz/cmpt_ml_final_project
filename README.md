@@ -82,6 +82,7 @@ Reference: Original Dataset Columns:
 ## Part 3: Building Another Model for Different Data
 
 We predicted the curricular units 2nd sem (grade) (index 31)
+File used: `studentPerformance.csv` from [UC Irvine](https://archive.ics.uci.edu/dataset/320/student+performance).
 
 In the data processing file we excluded indexes:
 

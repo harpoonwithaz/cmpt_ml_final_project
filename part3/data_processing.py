@@ -11,7 +11,7 @@ from typing import List, Tuple
 def create_data_set() -> Tuple[List[List[float]], List[float]]:
     '''
     Function to read a csv file and create a data set for linear regression model. More info in the README file.
-
+    Credit: UC Irvine
     Output data: Curricular units 2nd sem (grade)
     
     In the data processing file we excluded indexes:
