@@ -1,3 +1,9 @@
+# =====================================
+# Author: Oliver Tadaniewicz, Laurenzo Maddatu
+# Date: 11/24/2025
+# Description: Module for calculating model performance from predictions and displaying it using turtle graphics.
+# =====================================
+
 import turtle
 from typing import Dict
 

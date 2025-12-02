@@ -1,3 +1,9 @@
+# =====================================
+# Author: Laurenzo Maddatu, Oliver Tadaniewicz
+# Date: 11/24/2025
+# Description: Module for calculating model performance from predictions and displaying it using turtle graphics.
+# =====================================
+
 import turtle
 from typing import Dict
 
@@ -52,7 +58,8 @@ def graph_error_percentage(percentages: dict, graph_title: str):
     '''Function to model the error percentages as a bar graph
     
     Args:
-        percentages (dict): Containing error percentages for each prediction
+        percentages (dict): Containing error percentages for each prediction.
+        graph_title (str): Title of window, and at the top of the graph
     '''
     # I acknowledge that I used chatgpt to assist me in creating this function.
     # It helped me with method of creating the graph, and how to display the bars on the graph

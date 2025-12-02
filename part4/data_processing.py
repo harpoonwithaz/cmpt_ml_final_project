@@ -1,6 +1,10 @@
+# =====================================
+# Author: Oliver Tadaniewicz, Laurenzo Maddatu
+# Date: 11/24/2025
+# Description: Module to process data from csv file into a format usable
+# by the linear regression model.
+# =====================================
 
-
-import os
 from typing import Tuple, List
 
 def create_training_set(

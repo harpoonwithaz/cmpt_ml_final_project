@@ -1,6 +1,12 @@
+# =====================================
+# Authors: Oliver Tadaniewicz and Laurenzo Maddatu
+# Date: 11/29/2025
+# Description: Part 1. Program that trains a linear regression model to predict
+# a numeric value based off of trained data containing random integers 0-1000
+# =====================================
+
 import random
 from typing import List # For type hinting
-
 from sklearn.linear_model import LinearRegression
 
 def create_inputs() -> List[List[int]]:
@@ -25,16 +31,16 @@ def create_inputs() -> List[List[int]]:
 
 def create_outputs(inputs, weight_a, weight_b, weight_c) -> List[int]:
     '''
-    Creates a list of 100 outputs by adding each input multiplied by its weight
+    Creates a list of 100 outputs by adding each input multiplied by its weight.
     
     Args:
-        inputs (List[List[int]]): list of lists containing 3 integers
-        weight_a (int): The product for the first index in the sublist
-        weight_b (int): The product for the second index in the sublist
-        weight_c (int): The product for the third index in the sublist
+        inputs (List[List[int]]): list of lists containing 3 integers.
+        weight_a (int): The product for the first index in the sublist.
+        weight_b (int): The product for the second index in the sublist.
+        weight_c (int): The product for the third index in the sublist.
 
     Returns:
-        outputs (List[int]): 
+        outputs (List[int]): List of sum of each input value multiplied by its weight.
     '''
     output_list = []
     for row in inputs:
@@ -49,14 +55,14 @@ def create_outputs(inputs, weight_a, weight_b, weight_c) -> List[int]:
 
 # Create training set for prediction
 train_input = create_inputs()
-train_output = create_outputs(train_input,1,2,3)
+train_output = create_outputs(train_input,1,2,3) # The weights we chose are 1, 2 and 3
 
-# Prediction
+# Prediction using sci kit learns linear regression model
 predictor = LinearRegression(n_jobs=-1)
 predictor.fit(X=train_input, y=train_output)
 
-# Prediction Test
-X_test = [[10,20,30]]
+# Prediction test to see if it is accurate
+X_test = [[10,20,30]] # These are the test values that we want the model to predict
 outcome = predictor.predict(X=X_test)
 coefficients = predictor.coef_
 print("Prediction: " + str(outcome))

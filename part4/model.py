@@ -1,7 +1,8 @@
 # =====================================
 # Author: Oliver Tadaniewicz, Laurenzo Maddatu
 # Date: 11/24/2025
-# Description: 
+# Description: Linear regression model that allows the user to provide their own
+# csv file to train on, and then displays the performance of the models predictions.
 # =====================================
 
 # Displays message to show progress in case loading modules take a while
@@ -9,6 +10,7 @@ print("Importing modules...")
 
 # Library imports
 import os
+from pathlib import Path
 from sklearn.linear_model import LinearRegression
 import csv
 
@@ -17,10 +19,11 @@ from model_performance import calculate_model_performance, graph_error_percentag
 from data_processing import create_training_set, train_test_partition
 
 # Current working directory to ensure compatibility across devices
-cwd = os.getcwd()
-folder_path = f'{cwd}\\part4\\datafiles'
+script_dir = Path(__file__).parent.absolute()
+folder_path = os.path.join(script_dir, 'data')
 
 def clear_console():
+    '''Simple function to clear console soft coded for different OS's'''
     # For Windows
     if os.name == 'nt':
         _ = os.system('cls')
@@ -75,8 +78,8 @@ def print_table(array: list, column_title: str, margin: int = 10):
         print(str(index).ljust(margin), str(item.strip('\n')))
 
 def main():
+    '''Main program which will execute when the script is ran'''
     # Obtains all files in specified directory and filters out non csv files
-    #clear_console()
     print(f'Scanning for files in: {folder_path}')
     files = os.listdir(folder_path)
     csv_files = [
@@ -95,7 +98,7 @@ def main():
         clear_console()
         file_choice = csv_files[choice]
         print(f'File choice ----> {file_choice.upper()}')
-        training_file = f'{cwd}\\part4\\datafiles\\{file_choice}'
+        training_file = os.path.join(folder_path, file_choice)
 
         # Opens file, reads header and first line into lists
         try:
@@ -113,6 +116,7 @@ def main():
                 sample_row = row1.split(str(separator))
         except Exception as e:
             print(f'Error in opening file: {e}')
+            return
         
         # Prints table containing columns
         print('Which column do you want to use as output data for the model?')
@@ -161,7 +165,7 @@ def main():
         # Prints choices
         clear_console()
         print(f'File choice ----> {file_choice}')
-        print(f'Output column choice ----> {output_column_choice}')
+        print(f'Output "Prediction" column choice ----> {output_column_choice}')
         print(f'Input column choice ----> ', end='')
         print(*input_names, sep=', ')
 

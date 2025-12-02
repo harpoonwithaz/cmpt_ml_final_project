@@ -1,7 +1,8 @@
 # =====================================
 # Author: Laurenzo Maddatu, Oliver Tadaniewicz
 # Date: 11/24/2025
-# Description: Creating the percentage error graph using module imports and data 
+# Description: Linear regression model which predicts Curricular units 2nd sem (grade) and displays
+# prediction error percentage.
 # =====================================
 
 from sklearn.linear_model import LinearRegression
@@ -32,6 +33,4 @@ prediction = model.predict(X=X_test)
 print('Calculating model performance')
 error_percentages = calculate_model_performance(y_test, prediction)
 print('Graphing error percentage...')
-graph_error_percentage(error_percentages, 'Predictions Error Percentages')
-
-
+graph_error_percentage(error_percentages, 'Predictions Error Percentages for studentPerformance.csv')

@@ -1,10 +1,11 @@
 # =====================================
-# Author(s): Oliver Tadaniewicz, 
+# Author(s): Oliver Tadaniewicz and Laurenzo Maddatu
 # Date: 11/18/2025
-# Description: Module to process the data from csv file into a format usable for the ML model
+# Description: Module to process the data from csv file into a format usable for the ML model.
 # =====================================
 
 import os
+from pathlib import Path
 from typing import List, Tuple
 
 # --- Important columns (number represents the index) --- 
@@ -52,8 +53,8 @@ def create_data_set() -> Tuple[List[List[int]], List[int]]:
     '''
 
     # Ensures python can find the correct file location
-    cwd = os.getcwd()
-    file_location = os.path.join(cwd, 'part2', 'data', 'SeoulBikeData.csv')
+    script_dir = Path(__file__).parent.absolute()
+    file_location = os.path.join(script_dir, 'data', 'SeoulBikeData.csv')
 
     # Number corresponding to season
     season_map = {
@@ -112,18 +113,8 @@ def train_test_partition(data: list) -> Tuple[List, List]:
     '''
     partition_index = int(len(data) * 0.8) # 80% of the data given will be training data, remaining 20% is test data
 
+    # Slices the data passed
     training_partition = data[:partition_index]
     test_partition = data[partition_index:]
 
     return training_partition, test_partition
-
-# For testing purposes
-if __name__ == '__main__':
-    out, i = create_data_set()
-    print(i[0])
-    print(len(out))
-    print(len(i))
-
-    train, test = train_test_partition(out)
-    print(len(train))
-    print(len(test))

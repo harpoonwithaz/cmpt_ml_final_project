@@ -5,13 +5,30 @@
 # =====================================
 
 import os
+from pathlib import Path
 from typing import List, Tuple
 
 def create_data_set() -> Tuple[List[List[float]], List[float]]:
+    '''
+    Function to read a csv file and create a data set for linear regression model. More info in the README file.
 
+    Output data: Curricular units 2nd sem (grade)
+    
+    In the data processing file we excluded indexes:
+
+    - 29 (2nd sem evaluations) - because you would only know how many exams they took after the semester is over
+    - 30 (2nd sem approved) - because it tells the model the success/failure result, giving away the grade
+    - 31 (2nd sem grade)- because this is the answer key
+    - 32 (2nd sem without evaluations) - because this reveals the number of classes skipped or failed after the semester ends
+    - 36 (Target - Future status) - because this leaks the future, whether they eventually graduate or dropout, after the 2nd semester grades are recorded
+
+    Returns: A tuple containing:
+        - input_data: 2d array containing float of metrics from students information file.
+        - output_data: An array containing float of 2nd semester grades.
+    '''
     # Ensures python can find the correct file location
-    cwd = os.getcwd()
-    file_location = os.path.join(cwd, 'part3', 'data', 'studentPerformance.csv')
+    script_dir = Path(__file__).parent.absolute()
+    file_location = os.path.join(script_dir, 'data', 'studentPerformance.csv')
 
     with open(file_location, "r" , encoding="utf-8") as file:
 

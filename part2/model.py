@@ -1,7 +1,8 @@
 # =====================================
-# Author: Laurenzo Maddatu, Oliver Tadaniewicz
+# Author: Laurenzo Maddatu and Oliver Tadaniewicz
 # Date: 11/18/2025
-# Description: 
+# Description: Linear regression model which predicts amount of bikes rented in an hour based on
+# data using real data from Seoul, Korea
 # =====================================
 
 from sklearn.linear_model import LinearRegression
@@ -33,5 +34,3 @@ print('Calculating model performance')
 error_percentages = calculate_model_performance(y_test, prediction)
 print('Graphing error percentage...')
 graph_error_percentage(error_percentages, 'Predictions Error Percentages')
-
-

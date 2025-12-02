@@ -1,3 +1,10 @@
+# =====================================
+# Author(s): Oliver Tadaniewicz and Laurenzo Maddatu
+# Date: 11/18/2025
+# Description: Module to calculate model performance by comparing predicted values to actual values, 
+# and visualize the predictions in the error percentage ranges.
+# =====================================
+
 import turtle
 from typing import Dict
 
@@ -5,7 +12,8 @@ def calculate_model_performance(actual_values: list, predicted_values) -> Dict[s
     '''Function that calculates the error percentage of model from actual values and predicted values for each prediction
     
     Args:
-        actual_values (list): list of output test values
+        actual_values (list): list of output test values.
+        predicted_values: predictions from model.
 
     Returns:
         percentages (dict): keys representing the percentage range, 
@@ -52,7 +60,8 @@ def graph_error_percentage(percentages: dict, graph_title: str):
     '''Function to model the error percentages as a bar graph
     
     Args:
-        percentages (dict): Containing error percentages for each prediction
+        percentages (dict): Containing error percentages for each prediction.
+        graph_title (str): Title of window, and at the top of the graph
     '''
     # I acknowledge that I used chatgpt to assist me in creating this function.
     # It helped me with method of creating the graph, and how to display the bars on the graph
