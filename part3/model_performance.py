@@ -36,7 +36,7 @@ def calculate_model_performance(actual_values: list, predicted_values) -> Dict[s
         for i in range(len(actual_values)):
             # Avoids dividing by 0
             if not actual_values[i] == 0:
-                percentage_error = (abs(actual_values[i] - predicted_values[i]) / actual_values[i]) * 100
+                percentage_error = abs((abs(actual_values[i] - predicted_values[i]) / actual_values[i]) * 100)
                 
                 # Explicitly checks if percentage bigger than 100
                 if percentage_error > 100:
