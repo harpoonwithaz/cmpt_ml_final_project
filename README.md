@@ -132,6 +132,80 @@ Reference: Original Dataset Columns:
 35. GDP
 36. Target (shows if graduated, enrolled, or dropout)
 
+**Features:**
+
+- **Color-Coded Error Visualization:** Bar graph uses a gradient from green (excellent predictions, 0-10% error) through yellow (moderate errors, 30-50%) to red (poor predictions, 90-100%+ error)
+- **Accuracy Threshold Analysis:** Automatically calculates what percentage of predictions fall within 10%, 20%, and 30% error ranges
+- **Mean Error Estimation:** Computes a weighted average error across all predictions to give an overall performance score
+- **Prediction Bias Detection:** Identifies whether the model tends to over-predict or under-predict values
+- **Detailed Statistical Summary:** Shows average and maximum prediction errors in both directions
+- **Visual Console Output:** Includes ASCII bar charts for quick at-a-glance performance assessment
+- **Handles Edge Cases:** Automatically skips predictions where actual values are zero (to avoid division errors)
+
+---
+
+**calculate_accuracy_metrics()**:
+Calculates comprehensive accuracy statistics from the error percentage distribution.
+
+**Args:**
+- `percentages` (dict): Dictionary mapping error ranges to prediction counts
+
+**Returns:**
+- Dictionary containing total predictions, accuracy at various thresholds (10%, 20%, 30%), and estimated mean error percentage
+
+**print_performance_summary()**
+Displays a formatted summary of model performance in the console with visual elements.
+
+**Args:**
+- `percentages` (dict): Error percentage distribution
+- `metrics` (dict): Pre-calculated accuracy metrics
+
+**Outputs:**
+- Total number of predictions analyzed
+- Estimated mean error percentage
+- Number and percentage of predictions within each accuracy threshold
+- Clean, formatted table with separators for easy reading
+
+**compare_prediction_ranges()**:
+Analyzes the directional accuracy of predictions by comparing predicted values to actual values.
+
+**Args:**
+- `actual_values` (list): Ground truth values from test set
+- `predicted_values` (list): Model's predicted values
+
+**Returns:**
+- Dictionary containing counts of over-predictions, under-predictions, and exact matches, plus average and maximum error amounts in each direction
+
+---
+
+**print_prediction_bias()**:
+Displays analysis of whether the model systematically over-predicts or under-predicts values.
+
+**Args:**
+- `comparison` (dict): Statistics from `compare_prediction_ranges()`
+- `total` (int): Total number of predictions
+
+**Outputs:**
+- Breakdown of over-predictions vs under-predictions with percentages
+- Average amount by which predictions are off in each direction
+- Maximum error encountered in each direction
+- Warning message if model shows significant bias (>10% difference)
+- Confirmation message if predictions are balanced
+
+**graph_error_side_by_side()**:
+Creates a turtle graphics bar chart and cumulative line graph with dynamic color coding based on error severity.
+
+**Color Scheme:**
+- **0-10% error:** Bright green (0, 255, 0) — Excellent predictions
+- **10-30% error:** Green to yellow gradient — Good predictions
+- **30-50% error:** Yellow (255, 255, 0) — Acceptable predictions
+- **50-70% error:** Orange tones — Concerning predictions
+- **70-90% error:** Orange-red — Poor predictions
+- **90-100% error:** Red — Very poor predictions
+- **100%+ error:** Bright red (255, 0, 0) — Worst predictions
+
+The gradient smoothly transitions through the color spectrum, making it immediately obvious which error ranges contain the most predictions. Green bars indicate success, while red bars highlight areas where the model struggles.
+
 ## Part 4: Interactive Model Building
 
 This part creates an interactive linear regression model that allows users to provide their own CSV file and dynamically select which columns to use for training and prediction. The program guides users through file selection, column selection, and displays model performance visually.
