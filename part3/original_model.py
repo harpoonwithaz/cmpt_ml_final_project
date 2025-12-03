@@ -9,14 +9,7 @@ from sklearn.linear_model import LinearRegression
 
 # Local module imports
 from data_processing import create_data_set, train_test_partition
-from model_performance import (
-    calculate_model_performance, 
-    graph_error_percentage,
-    calculate_accuracy_metrics,      # EXTENSION 1
-    print_performance_summary,       # EXTENSION 2
-    compare_prediction_ranges,       # EXTENSION 3
-    print_prediction_bias            # EXTENSION 4
-)
+from original_modelPerformance import calculate_model_performance, graph_error_percentage
 
 # Obtain appropriate data that will be fed to model
 print('Creating data set...')
@@ -39,17 +32,5 @@ prediction = model.predict(X=X_test)
 # Model performance
 print('Calculating model performance')
 error_percentages = calculate_model_performance(y_test, prediction)
-
-# EXTENSION 1: Calculate comprehensive metrics
-metrics = calculate_accuracy_metrics(error_percentages)
-
-# EXTENSION 2: Print formatted summary
-print_performance_summary(error_percentages, metrics)
-
-# EXTENSION 3 & 4: Analyze prediction bias
-comparison = compare_prediction_ranges(y_test, prediction)
-print_prediction_bias(comparison, metrics['total_predictions'])
-
-# Original visualization
 print('Graphing error percentage...')
 graph_error_percentage(error_percentages, 'Predictions Error Percentages for studentPerformance.csv')
