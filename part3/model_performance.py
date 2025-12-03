@@ -133,8 +133,7 @@ def graph_error_percentage(percentages: dict, graph_title: str):
         value = percentages[key]
         bar_height = (value / max_value) * graph_height
 
-        # ----- COLOR GRADIENT LOGIC -----
-        # Color by error-range midpoint using a green->yellow->red gradient.
+        # Colour by error-range midpoint using a green->yellow->red gradient.
         # 0% -> bright green, 100%+ -> bright red.
         if key == '100+':
             fill = (255, 0, 0)  # Bright red for worst errors
@@ -148,7 +147,7 @@ def graph_error_percentage(percentages: dict, graph_title: str):
             midpoint = (low + high) / 2
             ratio = midpoint / 100.0  # 0.0 to 1.0
             
-            # Enhanced gradient: Green -> Yellow -> Orange -> Red
+            # Green -> Yellow -> Orange -> Red
             if ratio < 0.5:
                 # First half: Green to Yellow (0% to 50% error)
                 # Green stays high, red increases
@@ -156,14 +155,13 @@ def graph_error_percentage(percentages: dict, graph_title: str):
                 g = 255  # Stay at max green
                 b = 0
             else:
-                # Second half: Yellow to Red (50% to 100% error)
+                # Yellow to Red (50% to 100% error)
                 # Red stays high, green decreases
                 r = 255  # Stay at max red
                 g = int((1.0 - ratio) * 2 * 255)  # 255 to 0
                 b = 0
             
             fill = (r, g, b)
-        # ----------------------------
 
         x_start = graph_left + (i * (bar_width + bar_spacing))
         y_start = graph_bottom
@@ -215,16 +213,18 @@ def graph_error_percentage(percentages: dict, graph_title: str):
 
     turtle.done()
 
+# Chat GPT was used to assist in the printing functions to neatly
+# display the information to the console
 def calculate_accuracy_metrics(percentages: dict) -> dict:
-    """
-    EXTENSION 1: Calculate comprehensive accuracy metrics from error percentages.
+    '''
+    Calculate comprehensive accuracy metrics from error percentages.
     
     Args:
         percentages (dict): Error percentage distribution
         
     Returns:
         dict: Various accuracy metrics including mean error, median range, and accuracy thresholds
-    """
+    '''
     metrics = {}
     
     # Total predictions
@@ -259,32 +259,33 @@ def calculate_accuracy_metrics(percentages: dict) -> dict:
     
     return metrics
 
-def print_performance_summary(percentages: dict, metrics: dict):
-    """
-    EXTENSION 2: Print a formatted summary of model performance.
+def print_performance_summary(metrics: dict):
+    '''
+    Print a formatted summary of model performance.
     
     Args:
         percentages (dict): Error percentage distribution
         metrics (dict): Calculated accuracy metrics
-    """
-    print('\n' + '='*60)
+    '''
+    # Formats for readability
+    print('='*60)
     print('MODEL PERFORMANCE SUMMARY')
     print('='*60)
     
     print(f'\nTotal Predictions: {metrics["total_predictions"]}')
     print(f'Estimated Mean Error: {metrics["mean_error_estimate"]:.2f}%')
     
+    # Prints accuracy thresholds in console, and formats each value
     print('\n--- Accuracy Thresholds ---')
     print(f'Predictions within 10% error:  {metrics["within_10_percent"]:>4} ({metrics["accuracy_10_pct"]:.1f}%)')
     print(f'Predictions within 20% error:  {metrics["within_20_percent"]:>4} ({metrics["accuracy_20_pct"]:.1f}%)')
     print(f'Predictions within 30% error:  {metrics["within_30_percent"]:>4} ({metrics["accuracy_30_pct"]:.1f}%)')
     
-    
-    print('='*60 + '\n')
+    print('='*60)
 
 def compare_prediction_ranges(actual_values: list, predicted_values: list) -> dict:
-    """
-    EXTENSION 3: Analyze how well predictions match the actual value ranges.
+    '''
+    Analyze how well predictions match the actual value ranges.
     
     Args:
         actual_values (list): Actual test values
@@ -292,7 +293,7 @@ def compare_prediction_ranges(actual_values: list, predicted_values: list) -> di
         
     Returns:
         dict: Statistics about prediction ranges vs actual ranges
-    """
+    '''
     if len(actual_values) != len(predicted_values) or len(actual_values) == 0:
         return {}
     
@@ -331,20 +332,19 @@ def compare_prediction_ranges(actual_values: list, predicted_values: list) -> di
     return comparison
 
 def print_prediction_bias(comparison: dict, total: int):
-    """
-    EXTENSION 4: Print analysis of prediction bias (over/under prediction tendencies).
+    '''Print analysis of prediction bias (over/under prediction tendencies).
     
     Args:
         comparison (dict): Comparison statistics from compare_prediction_ranges
         total (int): Total number of predictions analyzed
-    """
+    '''
     if not comparison or total == 0:
         return
     
     # Calculate actual total from comparison data
     actual_total = comparison['over_predictions'] + comparison['under_predictions'] + comparison['exact_matches']
     
-    print('\n' + '='*60)
+    print('='*60)
     print('PREDICTION BIAS ANALYSIS')
     print('='*60)
     
@@ -367,10 +367,10 @@ def print_prediction_bias(comparison: dict, total: int):
     
     # Determine bias
     if over_pct > under_pct + 10:
-        print('\n⚠ Model tends to OVER-PREDICT (predicts higher than actual)')
+        print('\nModel tends to OVER-PREDICT (predicts higher than actual)')
     elif under_pct > over_pct + 10:
-        print('\n⚠ Model tends to UNDER-PREDICT (predicts lower than actual)')
+        print('\nModel tends to UNDER-PREDICT (predicts lower than actual)')
     else:
-        print('\n✓ Model shows balanced prediction (no strong bias)')
+        print('\nModel shows balanced prediction (no strong bias)')
     
-    print('='*60 + '\n')
+    print('='*60)
